@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Hello : MonoBehaviour
@@ -13,6 +15,12 @@ public class Hello : MonoBehaviour
         Option2, 
         Option3
     }
+    public UnityEvent customEvent;
+
+    float counter=0;
+
+    public Slider mySlider;
+
     void Start()
     {
         Debug.Log("Hello students! :D");
@@ -22,13 +30,15 @@ public class Hello : MonoBehaviour
 
     void Update()
     {
-        
+        counter+=Time.deltaTime;
+        //Debug.Log(counter);
     }
 
     public void ButtonClicked()
     {
         Debug.Log("Hello!");
-        counter+=time.deltaTime;
+        counter+=Time.deltaTime;
+        mySlider.value = Random.Range(mySlider.minValue,mySlider.maxValue);
     }
     public void ButtonClicked(bool print){
         if(print)Debug.Log("Hello!");
@@ -37,6 +47,7 @@ public class Hello : MonoBehaviour
     }
     public void OnSliderChanged(float newValue){
         Debug.Log("New value: "+ newValue);
+        
     }
     public void StartGame(){
         SceneManager.LoadScene("Game");
